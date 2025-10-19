@@ -31,7 +31,7 @@ export default function Home() {
               Get Free Quote
             </button>
             <button className="border border-emerald-700 text-emerald-700 px-8 py-3 rounded-lg font-semibold hover:bg-emerald-50 transition-colors">
-              View Our Work
+              View Our dingle
             </button>
           </div>
         </div>
