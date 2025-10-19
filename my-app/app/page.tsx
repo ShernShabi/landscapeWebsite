@@ -1,138 +1,168 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import BeforeAfterSlider from '../components/BeforeAfterSlider'
+import BookingModal from '../components/BookingModal'
+
 export default function Home() {
+  const [isVisible, setIsVisible] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
+  const [isBookingOpen, setIsBookingOpen] = useState(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+    
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
       {/* Header */}
-      <header className="px-6 py-8">
-        <nav className="max-w-6xl mx-auto flex justify-between items-center">
-          <div className="text-2xl font-bold text-emerald-900">
-            Santa Monica Landscaping
-          </div>
-          <div className="hidden md:flex space-x-8">
-            <a href="#services" className="text-gray-700 hover:text-emerald-700 transition-colors">Services</a>
-            <a href="#about" className="text-gray-700 hover:text-emerald-700 transition-colors">About</a>
-            <a href="#contact" className="text-gray-700 hover:text-emerald-700 transition-colors">Contact</a>
-          </div>
-        </nav>
+      <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-stone-200 z-50">
+        <div className="max-w-7xl mx-auto px-8 py-6">
+          <nav className="flex justify-between items-center">
+            <h1 className="text-3xl font-light tracking-wide text-forest-900 font-serif">GreenHeart Designs</h1>
+            <Link 
+              href="/workshops" 
+              className="text-stone-600 hover:text-forest-800 transition-all duration-300 font-light tracking-wide text-sm uppercase"
+            >
+              Workshops
+            </Link>
+          </nav>
+        </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="max-w-6xl mx-auto px-6 py-16">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Transform Your
-            <span className="text-emerald-700 block">Outdoor Space</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Professional landscaping services in Santa Monica, CA. 
-            Creating beautiful, sustainable gardens that enhance your property.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-800 transition-colors">
-              Get Free Quote
-            </button>
-            <button className="border border-emerald-700 text-emerald-700 px-8 py-3 rounded-lg font-semibold hover:bg-emerald-50 transition-colors">
-              View Our dingle
-            </button>
-          </div>
-        </div>
-
-        {/* Services Section */}
-        <section id="services" className="mb-20">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Our Services</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-white rounded-lg shadow-sm">
-              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🌱</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Garden Design</h3>
-              <p className="text-gray-600">Custom landscape designs tailored to your space and preferences.</p>
+      <main className="pt-24">
+        {/* Hero Section */}
+        <section className={`relative min-h-screen flex items-start justify-center px-8 pt-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="max-w-6xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="text-sm font-light tracking-widest text-forest-700 uppercase">Premium Landscaping</span>
             </div>
-            <div className="text-center p-6 bg-white rounded-lg shadow-sm">
-              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">✂️</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Maintenance</h3>
-              <p className="text-gray-600">Regular upkeep to keep your garden looking pristine year-round.</p>
-            </div>
-            <div className="text-center p-6 bg-white rounded-lg shadow-sm">
-              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🌿</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Plant Installation</h3>
-              <p className="text-gray-600">Expert planting of trees, shrubs, and seasonal flowers.</p>
+            <h2 
+              className="text-6xl md:text-8xl font-thin text-forest-900 mb-8 leading-tight transition-transform duration-700 ease-out font-serif"
+              style={{
+                transform: `translateY(${Math.min(scrollY * 0.5, 200)}px)`,
+                opacity: Math.max(1 - scrollY / 800, 0.3)
+              }}
+            >
+              Transform Your
+              <span className="block text-forest-700 font-light">Outdoor Space</span>
+            </h2>
+            <p 
+              className="text-xl text-stone-600 max-w-3xl mx-auto font-light leading-relaxed mb-12 transition-all duration-700 ease-out"
+              style={{
+                transform: `translateY(${Math.min(scrollY * 0.3, 150)}px)`,
+                opacity: Math.max(1 - scrollY / 1000, 0.2)
+              }}
+            >
+              Crafting extraordinary landscapes that elevate your property with timeless elegance and sustainable beauty
+            </p>
+            <div 
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center transition-all duration-700 ease-out"
+              style={{
+                transform: `translateY(${Math.min(scrollY * 0.2, 100)}px)`,
+                opacity: Math.max(1 - scrollY / 1200, 0.1)
+              }}
+            >
+              <button 
+                onClick={() => setIsBookingOpen(true)}
+                className="group bg-forest-900 text-white px-12 py-4 font-light tracking-wide text-sm uppercase hover:bg-forest-800 transition-all duration-300 transform hover:scale-105"
+              >
+                <span className="relative z-10">Schedule Consultation</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-forest-800 to-forest-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+              <button className="text-forest-800 hover:text-forest-600 font-light tracking-wide text-sm uppercase transition-colors duration-300">
+                View Portfolio
+              </button>
             </div>
           </div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className="mb-20">
-          <div className="bg-emerald-50 rounded-2xl p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Why Choose Us</h2>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-semibold text-emerald-800 mb-4">Local Expertise</h3>
-                <p className="text-gray-700 mb-6">
-                  Based in Santa Monica, we understand the unique climate and soil conditions 
-                  of the area. Our designs work with nature, not against it.
-                </p>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center">
-                    <span className="text-emerald-700 mr-2">✓</span>
-                    Sustainable, drought-resistant plants
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-emerald-700 mr-2">✓</span>
-                    Licensed and insured professionals
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-emerald-700 mr-2">✓</span>
-                    10+ years of local experience
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-emerald-700 mb-2">500+</div>
-                  <div className="text-gray-600">Projects Completed</div>
-                </div>
+        {/* Image Slider */}
+        <section className="pt-8 pb-24 px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-sm font-light tracking-widest text-forest-700 uppercase">Our Work</span>
+              <h3 className="text-4xl font-thin text-forest-900 mt-4 font-serif">Featured Projects</h3>
+            </div>
+            
+            <BeforeAfterSlider
+              beforeImage="/landscape1.jpg"
+              afterImage="/landscape2.jpg"
+              beforeLabel="Before"
+              afterLabel="After"
+              className="mb-8"
+            />
+          </div>
+        </section>
+
+        {/* Booking Section */}
+        <section className="py-16 px-8 bg-gradient-to-br from-forest-900 via-forest-800 to-forest-900">
+          <div className="max-w-6xl mx-auto text-center">
+            <div className="mb-8">
+              <span className="text-sm font-light tracking-widest text-forest-200 uppercase">Exclusive Service</span>
+            </div>
+            <h3 className="text-5xl font-thin text-white mb-8 font-serif">Book a Free Private Consultation</h3>
+            <p className="text-xl text-forest-100 max-w-3xl mx-auto font-light leading-relaxed mb-12">
+            See your future backyard come to life through a personalized consultation that turns your ideas into a clear vision.            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <button 
+                onClick={() => setIsBookingOpen(true)}
+                className="group bg-white text-forest-900 px-12 py-4 font-light tracking-wide text-sm uppercase hover:bg-stone-50 transition-all duration-300 transform hover:scale-105"
+              >
+                Schedule Now
+              </button>
+              <div className="text-forest-200 text-sm font-light">
+                <span className="block">Available 7 days a week</span>
+                <span className="text-forest-300">Premium service guarantee</span>
               </div>
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Ready to Get Started?</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Contact us today for a free consultation and estimate.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a 
-              href="tel:+13105551234" 
-              className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-800 transition-colors"
-            >
-              Call (310) 555-1234
-            </a>
-            <a 
-              href="mailto:info@santamonicalandscaping.com" 
-              className="text-emerald-700 hover:text-emerald-800 font-semibold"
-            >
-              info@santamonicalandscaping.com
-            </a>
+        <section className="py-16 px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-sm font-light tracking-widest text-forest-700 uppercase">Connect With Us</span>
+              <h3 className="text-4xl font-thin text-forest-900 mt-4 font-serif">Get In Touch</h3>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-16 max-w-4xl mx-auto">
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-forest-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-forest-200 transition-colors duration-300">
+                  <span className="text-2xl">📞</span>
+                </div>
+                <h4 className="text-xl font-light text-forest-900 mb-3">Phone</h4>
+                <p className="text-stone-600 font-light text-lg">(555) 746-8343</p>
+                <p className="text-stone-500 text-sm mt-2">Mon-Fri 9AM-6PM</p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-forest-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-forest-200 transition-colors duration-300">
+                  <span className="text-2xl">✉️</span>
+                </div>
+                <h4 className="text-xl font-light text-forest-900 mb-3">Email</h4>
+                <p className="text-stone-600 font-light text-lg">hello@greenscape.com</p>
+                <p className="text-stone-500 text-sm mt-2">Response within 24 hours</p>
+              </div>
+            </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <div className="text-xl font-bold mb-4">Santa Monica Landscaping</div>
-          <p className="text-gray-400 mb-4">Serving Santa Monica and surrounding areas</p>
-          <p className="text-sm text-gray-500">
-            © 2024 Santa Monica Landscaping. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      {/* Booking Modal */}
+      <BookingModal 
+        isOpen={isBookingOpen} 
+        onClose={() => setIsBookingOpen(false)} 
+      />
     </div>
-  );
+  )
 }
