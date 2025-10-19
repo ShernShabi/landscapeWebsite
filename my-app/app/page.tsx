@@ -94,10 +94,20 @@ export default function Home() {
             </div>
             
             <BeforeAfterSlider
-              beforeImage="/landscape1.jpg"
-              afterImage="/landscape2.jpg"
-              beforeLabel="Before"
-              afterLabel="After"
+              imageSets={[
+                {
+                  before: "/landscape1.jpg",
+                  after: "/landscape2.jpg",
+                  beforeLabel: "Before",
+                  afterLabel: "After"
+                },
+                {
+                  before: "/landscape3.jpg",
+                  after: "/landscape4.jpg",
+                  beforeLabel: "Before",
+                  afterLabel: "After"
+                }
+              ]}
               className="mb-8"
             />
           </div>
@@ -127,6 +137,47 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Workshop Section */}
+        <section className="py-16 px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-sm font-light tracking-widest text-forest-700 uppercase">Creative Experiences</span>
+              <h3 className="text-4xl font-thin text-forest-900 mt-4 font-serif">Design With Nature</h3>
+            </div>
+            
+            <div className="bg-gradient-to-br from-stone-50 to-stone-100 rounded-3xl p-12 text-center relative overflow-hidden">
+              {/* Subtle background pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-10 left-10 w-32 h-32 bg-forest-600 rounded-full"></div>
+                <div className="absolute bottom-10 right-10 w-24 h-24 bg-forest-500 rounded-full"></div>
+                <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-forest-400 rounded-full"></div>
+              </div>
+              
+              <div className="relative max-w-3xl mx-auto">
+                <h4 className="text-2xl font-light text-forest-900 mb-6 font-serif">
+                  Interactive Workshops & Private Events
+                </h4>
+                <p className="text-lg text-stone-600 font-light leading-relaxed mb-8">
+                  Immerse yourself in hands-on creative sessions where you'll learn to design with nature. 
+                  Perfect for personal growth or celebrating special moments with loved ones.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link 
+                    href="/workshops"
+                    className="bg-forest-900 text-white px-8 py-4 rounded-lg font-light tracking-wide text-sm uppercase hover:bg-forest-800 transition-all duration-300 transform hover:scale-105"
+                  >
+                    Book a Workshop
+                  </Link>
+                  <span className="text-stone-500 text-sm font-light">
+                    Available for individuals & groups
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section className="py-16 px-8">
           <div className="max-w-6xl mx-auto">
@@ -138,19 +189,23 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 max-w-4xl mx-auto">
               <div className="text-center group">
                 <div className="w-16 h-16 bg-forest-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-forest-200 transition-colors duration-300">
-                  <span className="text-2xl">📞</span>
+                  <svg className="w-6 h-6 text-forest-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
                 </div>
                 <h4 className="text-xl font-light text-forest-900 mb-3">Phone</h4>
-                <p className="text-stone-600 font-light text-lg">(555) 746-8343</p>
+                <p className="text-stone-600 font-light text-lg">(310) 746-8343</p>
                 <p className="text-stone-500 text-sm mt-2">Mon-Fri 9AM-6PM</p>
               </div>
               
               <div className="text-center group">
                 <div className="w-16 h-16 bg-forest-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-forest-200 transition-colors duration-300">
-                  <span className="text-2xl">✉️</span>
+                  <svg className="w-6 h-6 text-forest-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
                 </div>
                 <h4 className="text-xl font-light text-forest-900 mb-3">Email</h4>
-                <p className="text-stone-600 font-light text-lg">hello@greenscape.com</p>
+                <p className="text-stone-600 font-light text-lg">bluecity2000@gmail.com</p>
                 <p className="text-stone-500 text-sm mt-2">Response within 24 hours</p>
               </div>
             </div>

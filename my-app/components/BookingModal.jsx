@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 const BookingModal = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
+  const initialFormState = {
     name: '',
     email: '',
     phone: '',
@@ -12,7 +12,9 @@ const BookingModal = ({ isOpen, onClose }) => {
     timeline: '',
     budget: '',
     message: ''
-  })
+  }
+
+  const [formData, setFormData] = useState(initialFormState)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -32,16 +34,7 @@ const BookingModal = ({ isOpen, onClose }) => {
     await new Promise(resolve => setTimeout(resolve, 2000))
     
     // Reset form and close modal
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      propertyType: '',
-      projectType: '',
-      timeline: '',
-      budget: '',
-      message: ''
-    })
+    setFormData(initialFormState)
     setIsSubmitting(false)
     onClose()
     
@@ -53,7 +46,7 @@ const BookingModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl custom-scrollbar">
+      <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl scrollbar-hide">
         {/* Header */}
         <div className="sticky top-0 bg-white border-b border-stone-200 px-8 py-6 rounded-t-3xl">
           <div className="flex justify-between items-center">
@@ -258,24 +251,12 @@ const BookingModal = ({ isOpen, onClose }) => {
       </div>
       
       <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
+        .scrollbar-hide {
+          -ms-overflow-style: none;  /* Internet Explorer 10+ */
+          scrollbar-width: none;  /* Firefox */
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-          margin: 8px 0;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #d1d5db;
-          border-radius: 2px;
-          margin: 8px 0;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #9ca3af;
-        }
-        .custom-scrollbar {
-          scrollbar-width: thin;
-          scrollbar-color: #d1d5db transparent;
+        .scrollbar-hide::-webkit-scrollbar { 
+          display: none;  /* Safari and Chrome */
         }
       `}</style>
     </div>
