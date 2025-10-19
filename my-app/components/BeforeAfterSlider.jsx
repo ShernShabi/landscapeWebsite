@@ -112,14 +112,14 @@ export default function BeforeAfterSlider ({ imageSets = DEFAULT_IMAGE_SETS, cla
       >
         <div className="absolute inset-0">
           <img
-            src={currentSet.before}
-            alt="Before"
+            src={currentSet.after}
+            alt="After"
             className="w-full h-full object-cover"
             draggable={false}
           />
-          <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
+          <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
             <span className="text-sm font-medium text-stone-700 tracking-wide uppercase">
-              {currentSet.beforeLabel}
+              {currentSet.afterLabel}
             </span>
           </div>
         </div>
@@ -129,14 +129,14 @@ export default function BeforeAfterSlider ({ imageSets = DEFAULT_IMAGE_SETS, cla
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
           <img
-            src={currentSet.after}
-            alt="After"
+            src={currentSet.before}
+            alt="Before"
             className="w-full h-full object-cover"
             draggable={false}
           />
-          <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
+          <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
             <span className="text-sm font-medium text-stone-700 tracking-wide uppercase">
-              {currentSet.afterLabel}
+              {currentSet.beforeLabel}
             </span>
           </div>
         </div>

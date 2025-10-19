@@ -110,14 +110,8 @@ export default function Home() {
             <BeforeAfterSlider
               imageSets={[
                 {
-                  before: "/landscape1.jpg",
-                  after: "/landscape2.jpg",
-                  beforeLabel: "Before",
-                  afterLabel: "After"
-                },
-                {
-                  before: "/landscape3.jpg",
-                  after: "/landscape4.jpg",
+                  before: "/landscape1before.jpg",
+                  after: "/landscape1bafter.jpg",
                   beforeLabel: "Before",
                   afterLabel: "After"
                 }
