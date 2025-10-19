@@ -28,12 +28,26 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-8 py-6">
           <nav className="flex justify-between items-center">
             <h1 className="text-3xl font-light tracking-wide text-forest-900 font-serif">GreenHeart Designs</h1>
-            <Link 
-              href="/workshops" 
-              className="text-stone-600 hover:text-forest-800 transition-all duration-300 font-light tracking-wide text-sm uppercase"
-            >
-              Workshops
-            </Link>
+            <div className="flex items-center gap-6">
+              <button
+                onClick={() => setIsBookingOpen(true)}
+                className="hidden sm:inline-flex bg-forest-900 text-white px-6 py-2 text-xs font-light tracking-wide uppercase rounded-full hover:bg-forest-800 transition-all duration-300"
+              >
+                Consultation
+              </button>
+              <Link 
+                href="/workshops" 
+                className="text-stone-600 hover:text-forest-800 transition-all duration-300 font-light tracking-wide text-sm uppercase"
+              >
+                Workshops
+              </Link>
+              <a
+                href="tel:13107468343"
+                className="text-forest-700 hover:text-forest-900 transition-colors duration-300 font-light tracking-wide text-sm uppercase"
+              >
+                (310) 746-8343
+              </a>
+            </div>
           </nav>
         </div>
       </header>
@@ -43,7 +57,7 @@ export default function Home() {
         <section className={`relative min-h-screen flex items-start justify-center px-8 pt-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="max-w-6xl mx-auto text-center">
             <div className="mb-6">
-              <span className="text-sm font-light tracking-widest text-forest-700 uppercase">Premium Landscaping</span>
+              <span className="text-base sm:text-lg font-light tracking-[0.4em] text-forest-700 uppercase">Premium Landscaping</span>
             </div>
             <h2 
               className="text-6xl md:text-8xl font-thin text-forest-900 mb-8 leading-tight transition-transform duration-700 ease-out font-serif"
@@ -114,7 +128,7 @@ export default function Home() {
         </section>
 
         {/* Booking Section */}
-        <section className="py-16 px-8 bg-gradient-to-br from-forest-900 via-forest-800 to-forest-900">
+        <section id="consultation" className="py-16 px-8 bg-gradient-to-br from-forest-900 via-forest-800 to-forest-900">
           <div className="max-w-6xl mx-auto text-center">
             <div className="mb-8">
               <span className="text-sm font-light tracking-widest text-forest-200 uppercase">Exclusive Service</span>
@@ -162,14 +176,14 @@ export default function Home() {
                   Perfect for personal growth or celebrating special moments with loved ones.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div className="flex flex-col gap-4 items-center">
                   <Link 
                     href="/workshops"
                     className="bg-forest-900 text-white px-8 py-4 rounded-lg font-light tracking-wide text-sm uppercase hover:bg-forest-800 transition-all duration-300 transform hover:scale-105"
                   >
                     Book a Workshop
                   </Link>
-                  <span className="text-stone-500 text-sm font-light">
+                  <span className="text-stone-500 text-sm font-light text-center">
                     Available for individuals & groups
                   </span>
                 </div>
